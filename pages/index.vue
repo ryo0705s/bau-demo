@@ -1,93 +1,56 @@
 <template>
   <div>
-    <div>test</div>
-    <input v-model="state.todo" />
+    <h1>{{ title }}</h1>
+    <!-- <div id="app"> -->
+    <Fuga name="aho" />
+    <!-- </div> -->
+    <input type="text" v-model="data.member" />
     <button @click="add">追加</button>
     <ul>
-      <li v-for="(hoge, index) in state.todos" :key="index">
-        <span v-show="!state.editFlag">{{ hoge }}</span>
-        <span v-show="state.editFlag">
-          <input v-model="state.editTodo" />
-          <button @click="edited(index)">更新</button>
-        </span>
-        <span v-show="!state.editFlag">
-          <button @click="erase(index)">削除</button>
-          <button @click="edit(index)">編集</button>
-        </span>
-      </li>
+      <li v-for="(m, index) in data.members" :key="index">{{ m }}</li>
+    </ul>
+    <ul>
+      <li v-for="u in data.users" :key="u.id">{{ u.id }} {{ u.name }}</li>
     </ul>
   </div>
 </template>
 
-<script>
-import { defineComponent, reactive } from "@nuxtjs/composition-api";
-
+<script lang="js">
+import { defineComponent, reactive, ref } from '@nuxtjs/composition-api'
+import { watch } from 'less'
+import Fuga from './pro.vue'
 export default defineComponent({
-  setUp() {
-    const state = reactive({
-      todo: "",
-      todos: [""],
-      editFlag: false,
-      newHoge: "",
-    });
-    // data() {
-    //   return {
-    //     todo: "",
-    //     todos: [],
-    //     editFlag: false,
-    //     newHoge: "",
-    //   };
-    // },
-    const add = () => {
-      state.todos.push(state.todo);
-      state.todo = "";
-      console.log("state.todos");
-    };
-    const erase = (index) => {
-      state.todos.splice(index, 1);
-      console.log(index, state.todos);
-    };
-    const edit = (index) => {
-      state.editFlag = true;
-      state.editTodo = state.todos[index];
-      state.newHoge = state.editTodo;
-    };
-    const edited = (index) => {
-      state.editFlag = false;
-      state.todos.splice(index, 1, state.editTodo);
-    };
-
-    // methods: {
-    //   add() {
-    //     this.todos.push(this.todo);
-    //     this.todo = "";
-    //   },
-    //   erase(index) {
-    //     this.todos.splice(index, 1);
-    //     console.log(index, this.todos);
-    //   },
-    //   edit(index) {
-    //     this.editFlag = true;
-    //     this.editTodo = this.todos[index];
-    //     this.newHoge = this.editTodo;
-    //   },
-    //   edited(index) {
-    //     this.editFlag = false;
-    //     this.todos.splice(index, 1, this.editTodo);
-    //   },
-    // },
-    return {
-      state,
-      add,
-      erase,
-      edit,
-      edited,
-    };
+  // name: "app",
+  components: {
+    Fuga,
   },
-});
+  setup() {
+    const data = reactive({
+      users: [
+        { id: 1, name: '加藤かな' },
+        { id: 2, name: '田中紘一' },
+        { id: 3, name: '山田太郎' },
+      ],
+      members:[],
+      member:""
+    })
+    const title = ref("タイトル")
+
+    setTimeout(() => {
+      data.users.push({ id: 4, name: '新藤誠' })
+      title.value = "タイトルが変更できること"
+    }, 1000);
+    const add = () => {
+      console.log("ddd")
+      data.members.push(data.member)
+      data.member = ""
+    }
+    watch
+    return {
+      data,
+      title,
+      add
+    }
+  },
+})
 </script>
-<style scoped>
-li {
-  list-style: none;
-}
-</style>
