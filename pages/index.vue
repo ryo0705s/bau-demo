@@ -6,6 +6,8 @@
     <!-- </div> -->
     <input type="text" v-model="data.member" />
     <button @click="add">追加</button>
+    <p>child_num: {{ child_num }}</p>
+    <button @click="child">親に値を渡す</button>
     <ul>
       <li v-for="(m, index) in data.members" :key="index">{{ m }}</li>
     </ul>
@@ -16,8 +18,7 @@
 </template>
 
 <script lang="js">
-import { defineComponent, reactive, ref } from '@nuxtjs/composition-api'
-import { watch } from 'less'
+import { defineComponent, reactive, ref} from '@nuxtjs/composition-api'
 import Fuga from './pro.vue'
 export default defineComponent({
   // name: "app",
@@ -32,7 +33,8 @@ export default defineComponent({
         { id: 3, name: '山田太郎' },
       ],
       members:[],
-      member:""
+      member:"",
+      child_num: 5
     })
     const title = ref("タイトル")
 
@@ -41,16 +43,24 @@ export default defineComponent({
       title.value = "タイトルが変更できること"
     }, 1000);
     const add = () => {
-      console.log("ddd")
+      // console.log("ddd")
       data.members.push(data.member)
       data.member = ""
     }
-    watch
+    const child = () => {
+      state.$emit("my-click",state.child_num)
+    }
     return {
       data,
       title,
-      add
+      add,
+      child
     }
+      // watch: {
+      //   data.members (newVal, oldVal) {
+      //     console.log(newVal, oldVal)
+      //   }
+      // }
   },
 })
 </script>
