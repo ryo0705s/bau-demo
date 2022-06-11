@@ -4,7 +4,8 @@
       {{ name }}
     </div>
     <p>parent_num: {{ parent_num }}</p>
-    <Child @my-click="parent_num = $event" />
+    <!-- <Child @my-click="parent_num = $event" /> -->
+    <Child @my-click="reflectNum" />
   </div>
 </template>
 
@@ -16,6 +17,9 @@ export default {
   },
   props: {
     title: name,
+  },
+  methods(value) {
+    this.reflectNum = value;
   },
   data() {
     return {
