@@ -34,7 +34,7 @@ export default defineComponent({
       ],
       members:[],
       member:"",
-      child_num: 5
+      child_num: 0
     })
     const title = ref("タイトル")
 

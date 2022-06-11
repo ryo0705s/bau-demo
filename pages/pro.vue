@@ -15,7 +15,12 @@ export default {
     Child,
   },
   props: {
-    title: Fuga,
+    title: name,
+  },
+  data() {
+    return {
+      parent_num: 100,
+    };
   },
 };
 </script>
