@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div>
-      {{ name }}
-    </div>
+    <div>{{ name }}fuga:{{ fuga }}hogo:{{ hogo }}</div>
     <p>parent_num: {{ parent_num }}</p>
     <!-- <Child @my-click="parent_num = $event" /> -->
     <Child @my-click="reflectNum" />
@@ -15,9 +13,10 @@ export default {
   component: {
     Child,
   },
-  props: {
-    title: name,
-  },
+  props: ["name", "fuga", "hogo"],
+  // props: {
+  //   title: name,
+  // },
   methods(value) {
     this.reflectNum = value;
   },

@@ -2,7 +2,8 @@
   <div>
     <h1>{{ title }}</h1>
     <!-- <div id="app"> -->
-    <Fuga name="aho" />
+    <Child name="aho" />
+    <Child :fuga="sss" :hogo="fff" />
     <!-- </div> -->
     <input type="text" v-model="data.member" />
     <button @click="add">追加</button>
@@ -19,11 +20,11 @@
 
 <script lang="js">
 import { defineComponent, reactive, ref} from '@nuxtjs/composition-api'
-import Fuga from './pro.vue'
+import Child from './pro.vue'
 export default defineComponent({
   // name: "app",
   components: {
-    Fuga,
+    Child,
   },
   setup() {
     const data = reactive({
@@ -37,6 +38,8 @@ export default defineComponent({
       child_num: 0
     })
     const title = ref("タイトル")
+    const sss = ref("aaa")
+    const fff = ref("bbb")
 
     setTimeout(() => {
       data.users.push({ id: 4, name: '新藤誠' })
