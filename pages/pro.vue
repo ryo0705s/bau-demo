@@ -1,25 +1,20 @@
 <template>
   <div>
-    <div>{{ name }}fuga:{{ fuga }}hogo:{{ hogo }}</div>
-    <p>parent_num: {{ parent_num }}</p>
+    <div>{{ name }}</div>
     <!-- <Child @my-click="parent_num = $event" /> -->
-    <Child @my-click="reflectNum" />
   </div>
 </template>
 
 <script>
-import Child from "./index.vue";
 export default {
-  component: {
-    Child,
-  },
-  props: ["name", "fuga", "hogo"],
-  // props: {
-  //   title: name,
+  // component: {
+  //   Child,
   // },
-  methods(value) {
-    this.reflectNum = value;
+  // props: ["name", "fuga", "hogo"],
+  props: {
+    title: name,
   },
+
   data() {
     return {
       parent_num: 100,

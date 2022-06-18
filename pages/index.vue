@@ -3,18 +3,19 @@
     <h1>{{ title }}</h1>
     <!-- <div id="app"> -->
     <Child name="aho" />
-    <Child :fuga="sss" :hogo="fff" />
+    <!-- <Child :fuga="sss" :hogo="fff" /> -->
     <!-- </div> -->
     <input type="text" v-model="data.member" />
     <button @click="add">追加</button>
-    <p>child_num: {{ child_num }}</p>
-    <button @click="child">親に値を渡す</button>
+    <p>child_num: {{ data.child_num }}</p>
+    <button href="./next" @click="child">親に値を渡す</button>
     <ul>
       <li v-for="(m, index) in data.members" :key="index">{{ m }}</li>
     </ul>
     <ul>
       <li v-for="u in data.users" :key="u.id">{{ u.id }} {{ u.name }}</li>
     </ul>
+    <a href="./next">"次ページ"</a>
   </div>
 </template>
 
@@ -35,11 +36,11 @@ export default defineComponent({
       ],
       members:[],
       member:"",
-      child_num: 0
+      child_num: 10
     })
     const title = ref("タイトル")
-    const sss = ref("aaa")
-    const fff = ref("bbb")
+    // const sss = ref("aaa")
+    // const fff = ref("bbb")
 
     setTimeout(() => {
       data.users.push({ id: 4, name: '新藤誠' })
@@ -51,7 +52,7 @@ export default defineComponent({
       data.member = ""
     }
     const child = () => {
-      state.$emit("my-click",state.child_num)
+      data.$emit("my-click",data.child_num)
     }
     return {
       data,
