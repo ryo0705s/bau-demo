@@ -1,24 +1,13 @@
 <template>
   <div>
-    <div>{{ name }}</div>
-    <!-- <Child @my-click="parent_num = $event" /> -->
+    <Ind pro="hahahah" />
   </div>
 </template>
-
 <script>
+import Ind from "./index.vue";
 export default {
-  // component: {
-  //   Child,
-  // },
-  // props: ["name", "fuga", "hogo"],
-  props: {
-    title: name,
-  },
-
-  data() {
-    return {
-      parent_num: 100,
-    };
+  components: {
+    Ind,
   },
 };
 </script>

@@ -1,33 +1,25 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <!-- <div id="app"> -->
-    <Child name="aho" />
-    <!-- <Child :fuga="sss" :hogo="fff" /> -->
-    <!-- </div> -->
+    <h2>{{ pro }}</h2>
     <input type="text" v-model="data.member" />
     <button @click="add">追加</button>
-    <p>child_num: {{ data.child_num }}</p>
-    <button href="./next" @click="child">親に値を渡す</button>
     <ul>
       <li v-for="(m, index) in data.members" :key="index">{{ m }}</li>
     </ul>
     <ul>
       <li v-for="u in data.users" :key="u.id">{{ u.id }} {{ u.name }}</li>
     </ul>
-    <a href="./next">"次ページ"</a>
+    <!-- <a href="./next">"次ページ"</a> -->
   </div>
 </template>
 
 <script lang="js">
 import { defineComponent, reactive, ref} from '@nuxtjs/composition-api'
-import Child from './pro.vue'
 export default defineComponent({
-  // name: "app",
-  components: {
-    Child,
-  },
-  setup() {
+  props:["pro"],
+  setup(props,context) {
+    console.log("何が出る")
     const data = reactive({
       users: [
         { id: 1, name: '加藤かな' },
@@ -36,35 +28,21 @@ export default defineComponent({
       ],
       members:[],
       member:"",
-      child_num: 10
     })
     const title = ref("タイトル")
-    // const sss = ref("aaa")
-    // const fff = ref("bbb")
-
     setTimeout(() => {
       data.users.push({ id: 4, name: '新藤誠' })
       title.value = "タイトルが変更できること"
     }, 1000);
     const add = () => {
-      // console.log("ddd")
       data.members.push(data.member)
       data.member = ""
-    }
-    const child = () => {
-      data.$emit("my-click",data.child_num)
     }
     return {
       data,
       title,
       add,
-      child
     }
-      // watch: {
-      //   data.members (newVal, oldVal) {
-      //     console.log(newVal, oldVal)
-      //   }
-      // }
   },
 })
 </script>
