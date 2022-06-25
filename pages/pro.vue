@@ -1,13 +1,11 @@
 <template>
   <div>
-    <Ind pro="hahahah" />
+    <div>{{ count }}</div>
   </div>
 </template>
 <script>
-import Ind from "./index.vue";
 export default {
-  components: {
-    Ind,
-  },
+  props: ["count"],
+  setup(props) {},
 };
 </script>
