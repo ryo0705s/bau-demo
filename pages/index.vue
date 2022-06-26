@@ -1,37 +1,21 @@
 <template>
   <div>
-    <!-- <Pro count="0" /> -->
-    <Pro :count="state.kazoeru" />
-    <!-- <div>{{state.kazoeru}}</div> -->
-    <button @click="add">増やす</button>
-    <!-- <div>{{ state.text }}</div> -->
-    <input v-model="text" />
-    <button :text="textee" @deletee="erase">消す</button>
+    <Countt @countee="countRef" />
+    <!-- <button @ccount=""></button> -->
   </div>
 </template>
 <script>
-import { ref, reactive } from "@nuxtjs/composition-api";
-import Pro from "./pro.vue";
-export default {
+import { ref, defineComponent } from "@nuxtjs/composition-api";
+import Countt from "./next.vue";
+export default defineComponent({
   components: {
-    Pro,
+    Countt,
   },
   setup() {
-    const state = reactive({
-      kazoeru: 0,
-    });
-    const add = () => {
-      state.kazoeru++;
-      console.log(state.kazoeru);
-    };
-    const erase = () => {
-      textee.value = "";
-    };
+    const countRef = ref(1);
     return {
-      state,
-      add,
-      erase,
+      countRef,
     };
   },
-};
+});
 </script>
