@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div>
     <div>{{ count }}</div>
     <div>{{ text }}</div>
@@ -17,4 +17,4 @@ export default {
     };
   },
 };
-</script>
+</script> -->

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div>
     <div>{{ count }}</div>
     <div>{{ doubleCount }}</div>
@@ -31,4 +31,4 @@ export default defineComponent({
     };
   },
 });
-</script>
+</script> -->
