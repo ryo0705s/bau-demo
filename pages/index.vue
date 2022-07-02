@@ -12,7 +12,7 @@ export default defineComponent({
     Countt,
   },
   setup() {
-    const countRef = ref(1);
+    let countRef = ref(1);
     return {
       countRef,
     };

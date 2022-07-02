@@ -2,7 +2,7 @@
   <div>
     <div>{{ count }}</div>
     <div>{{ doubleCount }}</div>
-    <button @click="countNumber"></button>
+    <button @click="countNumber">押す</button>
   </div>
 </template>
 <script>
@@ -15,9 +15,9 @@ export default defineComponent({
     },
   },
   setup(props, context) {
-    // const count = computed(()=>{
-    //   return count
-    // })
+    // const count = computed(() => {
+    //   return count;
+    // });
     const doubleCount = computed(() => {
       return props.count * 2;
     });
@@ -25,6 +25,7 @@ export default defineComponent({
       context.emit("countee", props.count + 1);
     };
     return {
+      // count,
       doubleCount,
       countNumber,
     };
